@@ -13,17 +13,17 @@ public class ProfessoresService {
     @Autowired
     ProfessoresRepository professoresRepository;
 
-    //Cadastrar alunos
+    //Cadastrar professores
     public ProfessoresDTO cadastrar(ProfessoresDTO professoresDTO){
         return professoresRepository.save(professoresDTO);
     }
 
-    //Listar alunos
+    //Listar professores
     public List<ProfessoresDTO> listarTodos(){
         return professoresRepository.findAll();
     }
 
-    //Deletar aluno
+    //Deletar professores
     public void deletar(Long id){
         professoresRepository.deleteById(id);
     }

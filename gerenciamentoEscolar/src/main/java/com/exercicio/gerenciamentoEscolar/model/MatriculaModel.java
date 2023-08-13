@@ -22,9 +22,11 @@ public class MatriculaModel {
     @Column(length = 30, nullable = false)
     private String dataMatricula;
 
-    @Column(nullable = false)
-    private String aluno;
+    @ManyToOne
+    @JoinColumn(name = "alunos_id")
+    private AlunosModel aluno;
 
-    @Column(nullable = false)
-    private String curso;
+    @ManyToOne
+    @JoinColumn(name = "cursos_id")
+    private CursosModel curso;
 }

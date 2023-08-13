@@ -26,8 +26,9 @@ public class ProfessoresModel {
     @Column(length = 3, nullable = false)
     private String idade;
 
-    @Column(nullable = false)
-    private String curso;
+    @ManyToOne
+    @JoinColumn(name = "cursos_id")
+    private CursosModel curso;
 
     @Column(nullable = false)
     private BigDecimal salario;
