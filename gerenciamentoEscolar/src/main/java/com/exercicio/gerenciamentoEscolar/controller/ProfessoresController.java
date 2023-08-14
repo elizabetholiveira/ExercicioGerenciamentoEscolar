@@ -19,9 +19,9 @@ public class ProfessoresController {
 
     //Cadastrar professor
     @PostMapping
-    public ResponseEntity<ProfessoresModel> cadastrar(@RequestBody ProfessoresModel professoresModel){
-        ProfessoresModel novoProfessor = professoresService.cadastrar(professoresModel);
-        return new ResponseEntity<>(novoProfessor, HttpStatus.CREATED);
+    public ResponseEntity<ResponseEntity> cadastrar(@RequestBody ProfessoresDTO professoresDTO){
+        ResponseEntity novoProfessor = professoresService.cadastrar(professoresDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoProfessor);
     }
 
     //Listar professores

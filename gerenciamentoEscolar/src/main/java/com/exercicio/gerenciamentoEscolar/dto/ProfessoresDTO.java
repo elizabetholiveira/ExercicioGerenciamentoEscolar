@@ -16,6 +16,6 @@ public class ProfessoresDTO {
     private Long id;
     private String nome;
     private String idade;
-    private String curso;
+    private Long curso;
     private BigDecimal salario;
 }
