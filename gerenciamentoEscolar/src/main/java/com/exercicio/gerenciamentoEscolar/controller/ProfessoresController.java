@@ -1,6 +1,7 @@
 package com.exercicio.gerenciamentoEscolar.controller;
 
 import com.exercicio.gerenciamentoEscolar.dto.ProfessoresDTO;
+import com.exercicio.gerenciamentoEscolar.model.ProfessoresModel;
 import com.exercicio.gerenciamentoEscolar.service.ProfessoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,14 +19,14 @@ public class ProfessoresController {
 
     //Cadastrar professor
     @PostMapping
-    public ResponseEntity<ProfessoresDTO> cadastrar(@RequestBody ProfessoresDTO professoresDTO){
-        ProfessoresDTO novoProfessor = professoresService.cadastrar(professoresDTO);
+    public ResponseEntity<ProfessoresModel> cadastrar(@RequestBody ProfessoresModel professoresModel){
+        ProfessoresModel novoProfessor = professoresService.cadastrar(professoresModel);
         return new ResponseEntity<>(novoProfessor, HttpStatus.CREATED);
     }
 
     //Listar professores
     @GetMapping
-    public ResponseEntity<List<ProfessoresDTO>> listarTodos(){
+    public ResponseEntity<List<ProfessoresModel>> listarTodos(){
         return ResponseEntity.ok(professoresService.listarTodos());
     }
 

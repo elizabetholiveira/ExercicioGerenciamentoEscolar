@@ -1,9 +1,12 @@
 package com.exercicio.gerenciamentoEscolar.repository;
 
-import com.exercicio.gerenciamentoEscolar.dto.MatriculaDTO;
+import com.exercicio.gerenciamentoEscolar.model.AlunosModel;
+import com.exercicio.gerenciamentoEscolar.model.MatriculaModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MatriculaRepository extends JpaRepository<MatriculaDTO, Long> {
+public interface MatriculaRepository extends JpaRepository<MatriculaModel, Long> {
+
+    void deleteByAluno(AlunosModel alunosModel);
 }

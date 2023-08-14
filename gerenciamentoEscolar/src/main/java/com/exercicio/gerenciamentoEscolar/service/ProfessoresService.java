@@ -1,6 +1,7 @@
 package com.exercicio.gerenciamentoEscolar.service;
 
 import com.exercicio.gerenciamentoEscolar.dto.ProfessoresDTO;
+import com.exercicio.gerenciamentoEscolar.model.ProfessoresModel;
 import com.exercicio.gerenciamentoEscolar.repository.ProfessoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,12 @@ public class ProfessoresService {
     ProfessoresRepository professoresRepository;
 
     //Cadastrar professores
-    public ProfessoresDTO cadastrar(ProfessoresDTO professoresDTO){
-        return professoresRepository.save(professoresDTO);
+    public ProfessoresModel cadastrar(ProfessoresModel professoresModel){
+        return professoresRepository.save(professoresModel);
     }
 
     //Listar professores
-    public List<ProfessoresDTO> listarTodos(){
+    public List<ProfessoresModel> listarTodos(){
         return professoresRepository.findAll();
     }
 

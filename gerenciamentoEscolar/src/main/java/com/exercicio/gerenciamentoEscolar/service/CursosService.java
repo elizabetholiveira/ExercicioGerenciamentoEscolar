@@ -1,6 +1,7 @@
 package com.exercicio.gerenciamentoEscolar.service;
 
 import com.exercicio.gerenciamentoEscolar.dto.CursosDTO;
+import com.exercicio.gerenciamentoEscolar.model.CursosModel;
 import com.exercicio.gerenciamentoEscolar.repository.CursosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,12 @@ public class CursosService {
     CursosRepository cursosRepository;
 
     //Cadastrar novo curso
-    public CursosDTO cadastrar(CursosDTO cursosDTO){
-        return cursosRepository.save(cursosDTO);
+    public CursosModel cadastrar(CursosModel cursosModel){
+        return cursosRepository.save(cursosModel);
     }
 
     //Listar cursos
-    public List<CursosDTO> listarTodos(){
+    public List<CursosModel> listarTodos(){
         return cursosRepository.findAll();
     }
 

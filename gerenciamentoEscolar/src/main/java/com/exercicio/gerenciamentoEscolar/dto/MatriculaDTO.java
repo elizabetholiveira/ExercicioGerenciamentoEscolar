@@ -13,6 +13,6 @@ public class MatriculaDTO {
 
     private Long id;
     private String dataMatricula;
-    private String aluno;
-    private String curso;
+    private Long aluno;
+    private Long curso;
 }
