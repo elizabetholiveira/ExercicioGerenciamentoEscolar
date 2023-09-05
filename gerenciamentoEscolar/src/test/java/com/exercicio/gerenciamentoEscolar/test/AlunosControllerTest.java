@@ -1,6 +1,7 @@
 package com.exercicio.gerenciamentoEscolar.test;
 
 //import com.exercicio.gerenciamentoEscolar.controller.AlunosController;
+import com.exercicio.gerenciamentoEscolar.controller.AlunosController;
 import com.exercicio.gerenciamentoEscolar.model.AlunosModel;
 import com.exercicio.gerenciamentoEscolar.service.AlunosService;
 //import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,9 +29,11 @@ import com.exercicio.gerenciamentoEscolar.service.AlunosService;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.exercicio.gerenciamentoEscolar.service.MatriculaService;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 
---
+//--
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -46,12 +49,21 @@ import java.util.Optional;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+//--
+
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 
 //@SpringJUnitConfig
 //@WebMvcTest(AlunosController.class)
-@AutoConfigureMockMvc
-@SpringBootTest
+//@AutoConfigureMockMvc
+//@SpringBootTest
+@WebMvcTest(controllers = AlunosController.class)
 public class AlunosControllerTest {
 
     @Autowired
@@ -59,6 +71,12 @@ public class AlunosControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockBean
+    private AlunosService alunosService;
+
+    @MockBean
+    private MatriculaService matriculaService;
 
     @Test
     public void testListarTodos() throws Exception {
@@ -69,11 +87,13 @@ public class AlunosControllerTest {
     @Test
     public void testCadastrar() throws Exception {
         AlunosModel alunosModel = new AlunosModel(001L, "Maria", "25", "maria@email.com");
-
-        mockMvc.perform(post("/api/alunos"))
+        when(alunosService.cadastrar(alunosModel))
+                .thenReturn(new AlunosModel(001L, "Maria", "25", "maria@email.com"));
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/alunos")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(alunosModel))
+                .content(objectMapper.writeValueAsString(alunosModel)))
                 .andExpect(status().isCreated())
-                .andExpect(content().json(objectMapper.writeValueAsString(alunosModel)));
+                .andExpect(content().json(objectMapper.writeValueAsString(alunosModel)))
+                .andDo(print());
     }
 }
